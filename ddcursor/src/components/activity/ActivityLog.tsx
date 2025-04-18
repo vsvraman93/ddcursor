@@ -104,28 +104,30 @@ export const ActivityLog: React.FC<ActivityLogProps> = ({ workspaceId }) => {
   return (
     <Paper sx={{ p: 3 }}>
       <Box sx={{ mb: 3 }}>
-        <Grid container justifyContent="space-between" alignItems="center">
-          <Grid item>
+        <Grid container spacing={2} alignItems="center">
+          <Grid item xs={6}>
             <Typography variant="h6" component="h2">
               Activity Log
             </Typography>
           </Grid>
-          <Grid item>
-            <FormControl sx={{ minWidth: 120 }}>
-              <InputLabel>Filter</InputLabel>
-              <Select
-                value={filter}
-                label="Filter"
-                onChange={(e) => setFilter(e.target.value)}
-                size="small"
-              >
-                <MenuItem value="all">All Activities</MenuItem>
-                <MenuItem value="documents">Documents</MenuItem>
-                <MenuItem value="questions">Questions</MenuItem>
-                <MenuItem value="comments">Comments</MenuItem>
-                <MenuItem value="workspaces">Workspaces</MenuItem>
-              </Select>
-            </FormControl>
+          <Grid item xs={6}>
+            <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <FormControl sx={{ minWidth: 120 }}>
+                <InputLabel>Filter</InputLabel>
+                <Select
+                  value={filter}
+                  label="Filter"
+                  onChange={(e) => setFilter(e.target.value)}
+                  size="small"
+                >
+                  <MenuItem value="all">All Activities</MenuItem>
+                  <MenuItem value="documents">Documents</MenuItem>
+                  <MenuItem value="questions">Questions</MenuItem>
+                  <MenuItem value="comments">Comments</MenuItem>
+                  <MenuItem value="workspaces">Workspaces</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
           </Grid>
         </Grid>
       </Box>
