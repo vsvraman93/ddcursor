@@ -4,7 +4,6 @@
 set -e
 
 echo "Building the application..."
-cd ddcursor
 npm run build
 
 echo "Deployment instructions:"
