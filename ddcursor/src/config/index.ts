@@ -58,10 +58,10 @@ export const validateConfig = (): void => {
   const requiredVars = [
     'VITE_SUPABASE_URL',
     'VITE_SUPABASE_ANON_KEY',
-  ];
+  ] as const;
 
   const missingVars = requiredVars.filter(
-    (varName) => !import.meta.env[varName]
+    (varName) => !import.meta.env[varName as keyof ImportMetaEnv]
   );
 
   if (missingVars.length > 0) {

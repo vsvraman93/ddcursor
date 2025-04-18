@@ -57,6 +57,12 @@ interface WorkspaceMember {
   user_email?: string;
 }
 
+interface WorkspaceMemberWithUser extends WorkspaceMember {
+  users: {
+    email: string;
+  };
+}
+
 export const WorkspaceManager: React.FC = () => {
   const [workspaces, setWorkspaces] = useState<Workspace[]>([]);
   const [members, setMembers] = useState<WorkspaceMember[]>([]);
@@ -146,9 +152,12 @@ export const WorkspaceManager: React.FC = () => {
       if (error) throw error;
       
       // Transform the data to include user_email
-      const membersWithEmail = (data || []).map(member => ({
-        ...member,
-        user_email: member.users?.email,
+      const membersWithEmail = ((data || []) as unknown as WorkspaceMemberWithUser[]).map(member => ({
+        id: member.id,
+        user_id: member.user_id,
+        workspace_id: member.workspace_id,
+        role: member.role,
+        user_email: member.users?.email || '',
       }));
       
       setMembers(membersWithEmail);
